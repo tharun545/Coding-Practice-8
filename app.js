@@ -118,13 +118,13 @@ app.put("/todos/:todoId/", async (request, response) => {
   let todoStatus = "";
   if (todo !== undefined) {
     updateTodoQuery = `UPDATE todo SET todo = '${todo}' WHERE id = ${todoId};`;
-    todoStatus = "${todo}";
+    todoStatus = "Todo";
   } else if (priority !== undefined) {
     updateTodoQuery = `UPDATE todo SET priority = '${priority}' WHERE id = ${todoId};`;
-    todoStatus = "${priority}";
+    todoStatus = "Priority";
   } else if (status !== undefined) {
     updateTodoQuery = `UPDATE todo SET priority = '${status}' WHERE id = ${todoId};`;
-    todoStatus = "${status}";
+    todoStatus = "Status";
   }
   await db.run(updateTodoQuery);
   response.send(`${todoStatus} Updated`);
@@ -138,3 +138,5 @@ app.delete("/todos/:todoId/", async (request, response) => {
   await db.run(deleteQuery);
   response.send("Todo Deleted");
 });
+
+module.exports = app;
